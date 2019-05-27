@@ -1,6 +1,10 @@
 package study.karel;
 
 import java.awt.*;
+import java.security.cert.PKIXRevocationChecker.Option;
+import java.util.HashMap;
+
+import javax.print.attribute.standard.OrientationRequested;
 
 
 class HVLayout implements LayoutManager {
@@ -12,9 +16,23 @@ class HVLayout implements LayoutManager {
 	/* Private constants */
 	private static final int MINIMUM = 0;
 
+	
+	/* Private variables*/
+	private int orientation;
+	private HashMap<Component, OptionTable> constraintTable;
+	
+	public  HVLayout(int orientation) {
+	        this.orientation = orientation;
+	        constraintTable = new HashMap<Component, OptionTable>();
+	}
+	
+	
+	
 	@Override
-	public void addLayoutComponent(String name, Component comp) {
-		// TODO Auto-generated method stub
+	public void addLayoutComponent(String constraints, Component comp) {
+		synchronized (comp.getTreeLock()) {
+                constraintTable.put(comp, new OptionTable(constraints.toLowerCase()));
+        }
 		
 	}
 
