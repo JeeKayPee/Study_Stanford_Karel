@@ -3,7 +3,6 @@ package study.karel;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-import org.omg.CORBA.INITIALIZE;
 
 public class OptionTable {
         private static final int INITIAL_STATE = 0;
